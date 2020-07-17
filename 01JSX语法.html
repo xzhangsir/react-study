@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX语法</title>
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="div"></div>
+    <script type="text/babel">
+      let names = ['html', 'css', 'js', 'ts', 'VUE']
+      const VDom = (
+        <ul>
+          {names.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      )
+      ReactDOM.render(VDom, document.getElementById('div'))
+    </script>
+  </body>
+</html>
+
+

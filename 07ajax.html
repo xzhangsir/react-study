@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>AJAX</title>
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/prop-types.js"></script>
+    <script src="./build/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+  </head>
+  <body>
+    <div id="div1"></div>
+    <script type="text/babel">
+      class Ajax extends React.Component {
+        state = {
+          name: '',
+          url: ''
+        }
+        componentDidMount() {
+          // 使用axios发送get请求  方式一
+          /* axios
+            .get('https://api.github.com/search/repositories', {
+              params: {
+                q: 'react',
+                sort: 'starts'
+              }
+            })
+            .then(response => {
+              let result = response.data
+              let { name, html_url } = result.items[0]
+              this.setState({ name, url: html_url })
+            }) */
+          // 使用axios发送get请求  方式二
+          /* axios
+            .get(
+              'https://api.github.com/search/repositories?q=react&sort=starts'
+            )
+            .then(response => {
+              let result = response.data
+              let { name, html_url } = result.items[0]
+              this.setState({ name, url: html_url })
+            }) */
+          // 使用axios发送post请求
+          /*   axio.post('http://......',{
+              name:zx
+            }).then(){
+            } */
+          // 使用fetch 发送请求
+          fetch(
+            'https://api.github.com/search/repositories?q=react&sort=starts'
+          )
+            .then(response => {
+              return response.json()
+            })
+            .then(data => {
+              let { name, html_url } = data.items[0]
+              this.setState({ name, url: html_url })
+            })
+        }
+        render() {
+          const { name, url } = this.state
+          if (!name) {
+            return <h2>加载中。。。</h2>
+          } else {
+            return (
+              <div>
+                去<a href={url}>{name}</a>
+              </div>
+            )
+          }
+        }
+      }
+      ReactDOM.render(<Ajax />, document.getElementById('div1'))
+    </script>
+  </body>
+</html>

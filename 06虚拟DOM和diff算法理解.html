@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>虚拟DOM和diff算法理解</title>
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/prop-types.js"></script>
+    <script src="./build/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="div1"></div>
+    <script type="text/babel">
+      class Mydom extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = {
+            date: new Date()
+          }
+        }
+        componentDidMount() {
+          setInterval(() => {
+            this.setState({
+              date: new Date()
+            })
+          }, 1000)
+        }
+        render() {
+          let { date } = this.state
+          return (
+            <div>
+              <span>当前时间</span>
+              <span>{date.toTimeString()}</span>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<Mydom />, document.getElementById('div1'))
+    </script>
+  </body>
+</html>
