@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>ToDoList</title>
-    <script src="./build/react.development.js"></script>
-    <script src="./build/react-dom.development.js"></script>
-    <script src="./build/prop-types.js"></script>
-    <script src="./build/babel.min.js"></script>
-  </head>
-  <body>
-    <div id="div1"></div>
-    <script type="text/babel">
-      class App extends React.Component {
-        constructor(props) {
-          super(props)
-          this.state = {
-            list: ['A', 'B', 'C']
-          }
-          this.addList = this.addList.bind(this)
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>ToDoList</title>
+  <script src="./build/react.development.js"></script>
+  <script src="./build/react-dom.development.js"></script>
+  <script src="./build/prop-types.js"></script>
+  <script src="./build/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <script type="text/babel">
+    /*   class App extends React.Component {
+        state = {
+          list: ['A', 'B', 'C']
         }
-        addList(item) {
+        // 子组件调用父组件的方法 并传值
+        addList = item => {
           let { list } = this.state
           list.unshift(item)
           this.setState({ list })
@@ -38,11 +37,13 @@
         }
       }
       class Add extends React.Component {
-        constructor(props) {
-          super(props)
-          this.submit = this.submit.bind(this)
+        propsTypes = {
+          count: PropTypes.number.isRequired,
+          addList: PropTypes.func.isRequired
         }
-        submit() {
+        submit = () => {
+          if (!this.input.value.trim()) return
+          // 子组件传递数据给父组件 通过自定义事件
           this.props.addList(this.input.value)
           this.input.value = ''
         }
@@ -55,11 +56,10 @@
           )
         }
       }
-      Add.propsTypes = {
-        count: PropTypes.number.isRequired,
-        addList: PropTypes.func.isRequired
-      }
       class List extends React.Component {
+        static propTypes = {
+          list: PropTypes.array.isRequired
+        }
         render() {
           let { list } = this.props
           return (
@@ -71,43 +71,39 @@
           )
         }
       }
-      List.propTypes = {
-        list: PropTypes.array.isRequired
+      ReactDOM.render(<App />, document.getElementById('div1')) */
+    /*
+  //  方法二: 不拆分组件
+  class ToDoList extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          list: []
+        }
       }
-      ReactDOM.render(<App />, document.getElementById('div1'))
+      submit = () => {
+        let { value } = this.input
+        let { list } = this.state
+        this.input.value = ''
+        list.unshift(value)
+        this.setState({ list })
+      }
+      render() {
+        return (
+          <div>
+            <input type="text" ref={input => (this.input = input)} />
+            <button onClick={this.submit}>提交</button>
+            <ul>
+              {this.state.list.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<ToDoList />, document.getElementById('div1')) */
+  </script>
+</body>
 
-      /*  
-    //  方法二: 不拆分组件
-    class ToDoList extends React.Component {
-        constructor(props) {
-          super(props)
-          this.state = {
-            list: []
-          }
-          this.submit = this.submit.bind(this)
-        }
-        submit() {
-          let { value } = this.input
-          let { list } = this.state
-          this.input.value = ''
-          list.unshift(value)
-          this.setState({ list })
-        }
-        render() {
-          return (
-            <div>
-              <input type="text" ref={input => (this.input = input)} />
-              <button onClick={this.submit}>提交</button>
-              <ul>
-                {this.state.list.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
-      }
-      ReactDOM.render(<ToDoList />, document.getElementById('div1')) */
-    </script>
-  </body>
 </html>

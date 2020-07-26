@@ -1,152 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>组件</title>
-    <script src="./build/react.development.js"></script>
-    <script src="./build/react-dom.development.js"></script>
-    <script src="./build/prop-types.js"></script>
-    <script src="./build/babel.min.js"></script>
-  </head>
-  <body>
-    <div id="div1"></div>
-    <div id="div2"></div>
-    <!--  <script type="text/babel">
-      //定义组件
-      // 方式一：工厂函数组件
-      function MyComponent() {
-        return <h1>工厂函数组件</h1>
-      }
-      ReactDOM.render(<MyComponent />, document.getElementById('div1'))
 
-      // 方式二：ES6类组件
-      class MyComponent2 extends React.Component {
-        render() {
-          return <h1>ES6类组件</h1>
-        }
-      }
-      ReactDOM.render(<MyComponent2 />, document.getElementById('div2'))
-    </script>-->
+<head>
+  <meta charset="UTF-8" />
+  <title>组件</title>
+  <script src="./build/react.development.js"></script>
+  <script src="./build/react-dom.development.js"></script>
+  <script src="./build/prop-types.js"></script>
+  <script src="./build/babel.min.js"></script>
+</head>
 
-    <!--  <script type="text/babel">
+<body>
+  <div id="div1"></div>
+  <div id="div2"></div>
+  <!-- <script type="text/babel">
+    //定义组件
+    // 方式一：工厂函数组件
+    function MyComponent() {
+      return (
+        <ul>
+          <li>工厂函数组件</li>
+          <li>工厂函数组件</li>
+        </ul>
+      )
+    }
+    ReactDOM.render(<MyComponent />, document.getElementById('div1'))
+
+    // 方式二：ES6类组件
+    class MyComponent2 extends React.Component {
+      render() {
+        return <h1>ES6类组件</h1>
+      }
+    }
+    ReactDOM.render(<MyComponent2 />, document.getElementById('div2'))
+  </script> -->
+
+  <!-- <script type="text/babel">
     // 组件的第一个属性  state
-      class Like extends React.Component {
-        constructor(props) {
-          super(props)
-          // 初始化状态
-          this.state = {
-            isLikeMe: false
-          }
-          // 将新增的方法中的this强制绑定为组件对象(很关键的一步)
-          this.handleClick = this.handleClick.bind(this)
+    class Like extends React.Component {
+      constructor() {
+        super()
+        // 初始化状态
+        this.state = {
+          isLikeMe: false
         }
-        // 新添加的方法：内部的this默认不是组件对象，而是undefined
-        handleClick() {
-          let isLikeMe = !this.state.isLikeMe
-          // 更新状态
-          this.setState({ isLikeMe })
-          // 上面的写法等同于
-          // this.setState({
-          //   isLikeMe: isLikeMe
-          // })
-        }
-        render() {
-          // 得到状态
-          let { isLikeMe } = this.state
-          // 上面的写法等同于
-          // let isLikeMe = this.state.isLikeMe
-          return (
-            <h1 onClick={this.handleClick}>
-              {isLikeMe ? '世界你好！' : '你好世界'}
-            </h1>
-          )
-        }
+        // 将新增的方法中的this强制绑定为组件对象(很关键的一步)
+        // this.handleClick = this.handleClick.bind(this)  //用箭头函数 就不用这个麻烦了
       }
-      ReactDOM.render(<Like />, document.getElementById('div1'))
-    </script> -->
-    <!--  <script type="text/babel">
-      // 组件的第二个属性  props
-      // 工厂模式定义组件
-      /*  function Person(props) {
+      // 新添加的方法：内部的this默认不是组件对象，而是undefined
+      // handleClick() {
+      //   let isLikeMe = !this.state.isLikeMe
+      //   // 更新状态
+      //   this.setState({ isLikeMe })
+      // }
+
+      // 使用箭头函数 改变this指向
+      handleClick = () => {
+        this.setState({
+          isLikeMe: !this.state.isLikeMe
+        })
+      }
+      render() {
+        // 得到状态
+        let { isLikeMe } = this.state
         return (
-          <ul>
-            <li>姓名：{props.name}</li>
-            <li>年龄：{props.age}</li>
-            <li>性别：{props.sex}</li>
-          </ul>
+          <h1 onClick={this.handleClick}>
+            {isLikeMe ? '世界你好！' : '你好世界！'}
+          </h1>
         )
-      } */
-      // ES6类的模式定义组件
-      class Person extends React.Component {
-        render() {
-          return (
-            <ul>
-              <li>姓名：{this.props.name}</li>
-              <li>年龄：{this.props.age}</li>
-              <li>性别：{this.props.sex}</li>
-            </ul>
-          )
-        }
       }
+    }
+    ReactDOM.render(<Like />, document.getElementById('div1'))
+  </script> -->
+  <!-- <script type="text/babel">
+    // 组件的第二个属性  props
+    // 工厂模式定义组件
+    /*  function Person(props) {
+       return (
+         <ul>
+           <li>姓名：{props.person.name}</li>
+           <li>年龄：{props.person.age}</li>
+           <li>性别：{props.person.sex}</li>
+         </ul>
+       )
+     } */
+    // ES6类的模式定义组件
+    class Person extends React.Component {
       // 指定组件的默认值
-      Person.defaultProps = {
-        sex: '男的',
-        age: 18
+      static defaultProps = {
+        person: {
+          name: 'xxx',
+          age: 18,
+          sex: '男'
+        }
       }
       // 指定组件属性值的类型和必要性   必须引入  prop-types.js  这个库
-      Person.propTypes = {
-        name: PropTypes.string.isRequired //name是字符串类型且必须传
+      static propTypes = {
+        person: PropTypes.object.isRequired //PropTypes是对象类型且必须传
       }
-      let p1 = {
-        name: 'zx',
-        age: 20,
-        sex: '男'
+      render() {
+        let { person } = this.props
+        return (
+          <ul>
+            <li>姓名：{person.name}</li>
+            <li>年龄：{person.age}</li>
+            <li>性别：{person.sex}</li>
+          </ul>
+        )
       }
-      ReactDOM.render(
-        // <Person name={p1.name} age={p1.age} sex={p1.sex} />,
-        <Person {...p1} />,
-        document.getElementById('div1')
-      )
-      let p2 = {
-        name: 'zm'
+    }
+    let person1 = {
+      name: 'zx',
+      age: 20,
+      sex: '男'
+    }
+    let person2 = {
+      name: 'waa',
+      age: 20,
+      sex: '女'
+    }
+    ReactDOM.render(
+      <div>
+        {/*传值给子组件*/}
+        <Person person={person1} />
+        <Person person={person2} />
+      </div>,
+      document.getElementById('div1')
+    )
+  </script> -->
+  <!-- <script type="text/babel">
+    // 组件的第三个属性  ref
+    class Mydom extends React.Component {
+      constructor(props) {
+        super(props)
+        this.mydiv = React.createRef()
+        this.myinput = React.createRef()   //可以不要
       }
-      ReactDOM.render(
-        <Person name={p2.name} />,
-        document.getElementById('div2')
-      )
-    </script> -->
-    <!--   <script type="text/babel">
-    // 组件的第三属性  ref
-      class MyComponent extends React.Component {
-        constructor(props) {
-          super(props)
-          this.submit = this.submit.bind(this)
-          this.handleBlur = this.handleBlur.bind(this)
-        }
-        submit() {
-          // console.log(this.refs)  //this.refs是一个对象
-          // alert(this.refs.content.value)  //这种方式对应第一个input框
-          alert(this.input.value) //这种方式对应第二个input框  推荐使用
-        }
-        handleBlur(event) {
-          alert(event.target.value)
-        }
-        render() {
-          return (
-            <div>
-              <input type="text" ref="content" />
-              <input type="text" ref={input => (this.input = input)} />
-              <button onClick={this.submit}>提交数据</button>
-              <input
-                type="text"
-                placeholder="失去焦点提交内容"
-                onBlur={this.handleBlur}
-              />
-            </div>
-          )
-        }
+      componentDidMount() {
+        console.log(this.mydiv.current)
       }
-      ReactDOM.render(<MyComponent />, document.getElementById('div1'))
-    </script> -->
-  </body>
+      getInput = () => {
+        console.log(this.myinput.value)
+      }
+      render() {
+        return (
+          <div>
+            <div ref={this.mydiv}>ref</div>
+            <input type="text" ref={input => (this.myinput = input)} />
+            <button onClick={this.getInput}>获取input值</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Mydom />, document.getElementById('div1'))
+  </script> -->
+</body>
+
 </html>

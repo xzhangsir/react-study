@@ -1,56 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>生命周期</title>
-    <script src="./build/react.development.js"></script>
-    <script src="./build/react-dom.development.js"></script>
-    <script src="./build/prop-types.js"></script>
-    <script src="./build/babel.min.js"></script>
-  </head>
-  <body>
-    <div id="div1"></div>
-    <script type="text/babel">
-      class Opacity extends React.Component {
-        constructor(props) {
-          super(props)
-          this.state = {
-            opacity: 1
-          }
-          this.disappear = this.disappear.bind(this)
-        }
-        componentDidMount() {
-          this.timer = setInterval(() => {
-            let { opacity } = this.state
-            opacity -= 0.1
-            if (opacity <= 0) {
-              opacity = 1
-            }
-            this.setState({ opacity })
-          }, 200)
-        }
-        componentWillUnmount() {
-          clearInterval(this.timer)
-        }
-        disappear() {
-          ReactDOM.unmountComponentAtNode(document.getElementById('div1'))
-        }
-        render() {
-          const { opacity } = this.state
-          return (
-            <div>
-              <h1 style={{ opacity: opacity }}>{this.props.msg}</h1>
-              <button onClick={this.disappear}>彻底消失</button>
-            </div>
-          )
-        }
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>生命周期</title>
+  <script src="./build/react.development.js"></script>
+  <script src="./build/react-dom.development.js"></script>
+  <script src="./build/prop-types.js"></script>
+  <script src="./build/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <script type="text/babel">
+    class Opacity extends React.Component {
+      state = {
+        opacity: 1
       }
-      ReactDOM.render(
-        <Opacity msg="若隐若现" />,
-        document.getElementById('div1')
-      )
-    </script>
-  </body>
+      componentWillMount() {
+        console.log('componentWillMount在组件渲染之前执行  即将废弃')
+      }
+      componentDidMount() {
+        console.log('componentDidMount 在组件渲染之后执行');
+        this.timer = setInterval(() => {
+          let { opacity } = this.state
+          opacity -= 0.1
+          if (opacity <= 0) {
+            opacity = 1
+          }
+          this.setState({ opacity })
+        }, 200)
+      }
+      shouldComponentUpdate() {
+        console.log('shouldComponentUpdate 返回true允许数据改变  反之')
+        return true
+      }
+      componentWillUpdate() {
+        console.log('componentWillUpdate数据在改变之前执行')
+      }
+      componentDidUpdate() {
+        console.log('componentDidUpdate数据修改完成')
+      }
+      componentWillReveiceProps() {
+        console.log("componentWillReveiceProps props发生改变执行");
+      }
+      componentWillUnmount() {
+        console.log('componentWillUnmount组件卸载')
+        clearInterval(this.timer)
+      }
+      disappear = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('div1'))
+      }
+      render() {
+        const { opacity } = this.state
+        return (
+          <div>
+            <h1 style={{ opacity: opacity }}>{this.props.msg}</h1>
+            <button onClick={this.disappear}>彻底消失</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(
+      <Opacity msg="若隐" />,
+      document.getElementById('div1')
+    )
+  </script>
+</body>
+
 </html>

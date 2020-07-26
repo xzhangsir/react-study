@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>setState同步异步</title>
+  <script src="./build/react.development.js"></script>
+  <script src="./build/react-dom.development.js"></script>
+  <script src="./build/prop-types.js"></script>
+  <script src="./build/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <script type="text/babel">
+    class Mydom extends React.Component {
+      state = {
+        count: 10
+      }
+      async changeCount() {
+        /*  this.setState({
+           count: this.state.count + 1
+         })
+         console.log(this.state.count) //由此可见是异步的 */
+        /* 同步获取数据*/
+        /* this.setState({
+          count: this.state.count + 1
+        }, () => {
+          console.log(this.state.count)
+        }) */
+        // 自定义setState
+        await this.mySetState({
+          count: this.state.count + 1
+        })
+        console.log(this.state.count)
+      }
+      // 自定义setState
+      mySetState(state) {
+        return new Promise((res) => {
+          this.setState(state, res)
+        })
+      }
+      render() {
+        let { count } = this.state
+        return (
+          <div>
+            <div>{count}</div>
+            <button onClick={this.changeCount.bind(this)}> 改变count</button>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Mydom />, document.getElementById('div1'))
+  </script>
+</body>
+
+</html>
