@@ -15,12 +15,15 @@
     let names = ['html', 'css', 'js', 'ts', 'VUE']
     const VDom = (
       <ul>
-        {names.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
+        <React.Fragment>
+          {names.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </React.Fragment>
       </ul>
     )
     ReactDOM.render(VDom, document.getElementById('div'))
+    // Fragment 想当于一个空标签  不会渲染出来
   </script>
 </body>
 

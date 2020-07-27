@@ -37,6 +37,13 @@
         console.log('shouldComponentUpdate 返回true允许数据改变  反之')
         return true
       }
+      /* shouldComponentUpdate(nextProps,nextState) {
+        if(nextProps.num === this.props.num){
+          return false
+        }
+        console.log('为防止子组件每次都渲染 可以这样处理')
+        return true
+      } */
       componentWillUpdate() {
         console.log('componentWillUpdate数据在改变之前执行')
       }

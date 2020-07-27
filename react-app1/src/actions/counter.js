@@ -16,6 +16,8 @@ export function add(num) {
     }, 1000)
   }
 }
+
+
 export function cut(num) {
   return {
     type: 'CUT',

@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>组件</title>
-    <script src="./build/react.development.js"></script>
-    <script src="./build/react-dom.development.js"></script>
-    <script src="./build/prop-types.js"></script>
-    <script src="./build/babel.min.js"></script>
-  </head>
 
-  <body>
-    <div id="div1"></div>
-    <div id="div2"></div>
-    <!-- <script type="text/babel">
+<head>
+  <meta charset="UTF-8" />
+  <title>组件</title>
+  <script src="./build/react.development.js"></script>
+  <script src="./build/react-dom.development.js"></script>
+  <script src="./build/prop-types.js"></script>
+  <script src="./build/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <div id="div2"></div>
+  <!-- <script type="text/babel">
     //定义组件
     // 方式一：工厂函数组件
     function MyComponent() {
@@ -32,9 +33,17 @@
       }
     }
     ReactDOM.render(<MyComponent2 />, document.getElementById('div2'))
+
+    // PureComponent  会对传递过来的数据 进行浅比较  如果props数据没有发生变化  组件就不会重新渲染
+    class MyComponent2 extends React.PureComponent {
+      render() {
+        return <h1>ES6类组件</h1>
+      }
+    }
+    ReactDOM.render(<MyComponent2 />, document.getElementById('div2'))
   </script> -->
 
-    <!-- <script type="text/babel">
+  <!-- <script type="text/babel">
     // 组件的第一个属性  state
     class Like extends React.Component {
       constructor() {
@@ -71,7 +80,7 @@
     }
     ReactDOM.render(<Like />, document.getElementById('div1'))
   </script> -->
-    <!-- <script type="text/babel">
+  <!-- <script type="text/babel">
     // 组件的第二个属性  props
     // 工厂模式定义组件
     /*  function Person(props) {
@@ -127,7 +136,7 @@
       document.getElementById('div1')
     )
   </script> -->
-    <!-- <script type="text/babel">
+  <!-- <script type="text/babel">
     // 组件的第三个属性  ref
     class Mydom extends React.Component {
       constructor(props) {
@@ -153,7 +162,7 @@
     }
     ReactDOM.render(<Mydom />, document.getElementById('div1'))
   </script> -->
-    <!--   <script type="text/babel">
+  <!--   <script type="text/babel">
       // 类似vue的插槽
       class Abox extends React.Component {
         render() {
@@ -171,5 +180,6 @@
         document.getElementById('div1')
       )
     </script> -->
-  </body>
+</body>
+
 </html>
