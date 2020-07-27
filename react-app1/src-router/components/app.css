@@ -1,11 +1,12 @@
 .button {
-  width: 50px;
+  width: 200px;
   height: 30px;
   line-height: 30px;
   background: #999;
   display: inline-block;
   margin: 20px;
   color: #fff;
+  text-align: center;
 }
 .activeClass {
   background: blue;

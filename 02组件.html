@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>组件</title>
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/prop-types.js"></script>
+    <script src="./build/babel.min.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>组件</title>
-  <script src="./build/react.development.js"></script>
-  <script src="./build/react-dom.development.js"></script>
-  <script src="./build/prop-types.js"></script>
-  <script src="./build/babel.min.js"></script>
-</head>
-
-<body>
-  <div id="div1"></div>
-  <div id="div2"></div>
-  <!-- <script type="text/babel">
+  <body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <!-- <script type="text/babel">
     //定义组件
     // 方式一：工厂函数组件
     function MyComponent() {
@@ -35,7 +34,7 @@
     ReactDOM.render(<MyComponent2 />, document.getElementById('div2'))
   </script> -->
 
-  <!-- <script type="text/babel">
+    <!-- <script type="text/babel">
     // 组件的第一个属性  state
     class Like extends React.Component {
       constructor() {
@@ -72,7 +71,7 @@
     }
     ReactDOM.render(<Like />, document.getElementById('div1'))
   </script> -->
-  <!-- <script type="text/babel">
+    <!-- <script type="text/babel">
     // 组件的第二个属性  props
     // 工厂模式定义组件
     /*  function Person(props) {
@@ -128,7 +127,7 @@
       document.getElementById('div1')
     )
   </script> -->
-  <!-- <script type="text/babel">
+    <!-- <script type="text/babel">
     // 组件的第三个属性  ref
     class Mydom extends React.Component {
       constructor(props) {
@@ -154,6 +153,23 @@
     }
     ReactDOM.render(<Mydom />, document.getElementById('div1'))
   </script> -->
-</body>
+    <!--   <script type="text/babel">
+      // 类似vue的插槽
+      class Abox extends React.Component {
+        render() {
+          return <div className="box1">{this.props.children}</div>
+        }
+      }
 
+      ReactDOM.render(
+        <div className="box1">
+          <Abox>
+            <p>11</p>
+            <p>22</p>
+          </Abox>
+        </div>,
+        document.getElementById('div1')
+      )
+    </script> -->
+  </body>
 </html>

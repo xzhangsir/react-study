@@ -6,7 +6,7 @@ import MyNavLink from '../components/myNavLink'
 
 export default class Message extends Component {
   state = {
-    msg: []
+    msg: [],
   }
   componentDidMount() {
     // 模拟ajax请求
@@ -14,7 +14,7 @@ export default class Message extends Component {
       let msg = [
         { id: 1, title: '001' },
         { id: 2, title: '002' },
-        { id: 3, title: '003' }
+        { id: 3, title: '003' },
       ]
       this.setState({ msg })
     }, 1000)
@@ -26,11 +26,15 @@ export default class Message extends Component {
         <ol>
           {msg.map((item, index) => (
             <li key={index}>
-              <MyNavLink to={`/home/message/${item.id}`}>{item.title}</MyNavLink>
+              <MyNavLink to={`/home/message/${item.id}`}>
+                {item.title}
+              </MyNavLink>
             </li>
           ))}
         </ol>
         <Route path="/home/message/:id" component={Msgdetail}></Route>
+        {/* <Route path="/home/message/:id?" component={Msgdetail}></Route> */}
+        {/* :id?  表示可选参数 */}
       </div>
     )
   }
