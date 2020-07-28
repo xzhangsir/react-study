@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>高阶组件</title>
+  <script src="./build/react.development.js"></script>
+  <script src="./build/react-dom.development.js"></script>
+  <script src="./build/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <script type="text/babel">
+    /** 
+     *  高阶组件
+     *     1  函数
+     *     2  参数是一个组件
+     *     3  返回值是一个组件
+    */
+    //定义一个高阶组件
+    const withFetch = (ComposeComponent) => {
+      return class extends React.Component {
+        render() {
+          return (
+            <ComposeComponent {...this.props} />
+          )
+        }
+      }
+    }
+
+    class Mydata extends React.Component {
+      render() {
+        return (
+          <div>myData:{this.props.data}</div>
+        )
+      }
+    }
+
+    const WithFetch = withFetch(Mydata)
+
+    class Parent extends React.Component {
+      render() {
+        return (
+          <div>
+            <WithFetch data={'hello WithFetch'} />
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Parent />, document.getElementById('div1'))
+  </script>
+</body>
+
+</html>

@@ -9,7 +9,7 @@ export default class MsgDetail extends Component {
     ],
   }
   goHome = () => {
-    this.props.history.push('/')
+    this.props.history.push('/') //必须是直接子元素
     // this.props.history.replace('/')
     console.log(this.props)
   }

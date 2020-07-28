@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>context</title>
+  <script src="./build/react.development.js"></script>
+  <script src="./build/react-dom.development.js"></script>
+  <script src="./build/prop-types.js"></script>
+  <script src="./build/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <script type="text/babel">
+    const Grandson = (props, context) => {
+      return (
+        <div>孙组件{context.color}</div>
+      )
+    }
+
+    const Son = () => {
+      return (
+        <div>
+          <div>子组件</div>
+          <Grandson />
+        </div>
+      )
+    }
+    class Parent extends React.Component {
+      getChildContext() {
+        return {
+          color: 'red'
+        }
+      }
+      render() {
+        return (
+          <div>
+            <div>父组件</div>
+            <Son />
+          </div>
+        )
+      }
+    }
+    Grandson.contextTypes = {
+      color: PropTypes.string
+    }
+    Parent.childContextTypes = {
+      color: PropTypes.string
+    }
+
+    ReactDOM.render(<Parent />, document.getElementById('div1'))
+  </script>
+</body>
+
+</html>
