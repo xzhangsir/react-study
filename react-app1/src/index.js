@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './app'
 
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -11,10 +10,24 @@ import { Provider } from 'react-redux'
 
 import rootReducer from './reducers/index'
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, thunk)))
+import routes from './routes'
+import { BrowserRouter as Router } from 'react-router-dom'
+
+import 'antd/dist/antd.css'
+
+import Tabber from './components/Tabber'
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(logger, thunk))
+)
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
-  </Provider>
-  , document.getElementById('root'))
+    <Router routes={routes}>
+      <Tabber />
+      {routes}
+    </Router>
+  </Provider>,
+  document.getElementById('root')
+)
