@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
-
+import { withRouter } from 'react-router-dom'
 class NormalLoginForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
         // 请求
-        this.props.signupActions.userSignupRequest(values)
+        this.props.signupActions.userSignupRequest(values).then(res => {
+          console.log(res)
+          // 当前路由并没直接管理这个组件 可以使用withRouter
+          this.props.history.push('/')
+        })
         console.log('Received values of form: ', values)
       }
     })
@@ -59,4 +63,4 @@ class NormalLoginForm extends Component {
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(
   NormalLoginForm
 )
-export default WrappedNormalLoginForm
+export default withRouter(WrappedNormalLoginForm)

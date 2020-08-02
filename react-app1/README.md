@@ -46,3 +46,19 @@ react-rotuer   https://react-router.docschina.org/web/api/Prompt
 reudx  https://www.redux.org.cn/
 
 ```
+
+
+```
+解决跨域
+const proxy = require('http-proxy-middleware')
+
+module.exports = function (app) {
+  app.user(
+    '/api',
+    proxy({
+      target: "http://localhost:3030",
+      changeOrigin: true
+    })
+  )
+}
+```
