@@ -16,6 +16,14 @@ export default () => {
   //   console.log('只在组件加载时就执行 相当于 componentDidMount ')
   // }, [])
 
+
+  // useEffect(() => {
+  //   return () => {
+  //     console.log('相当于componentWillUnMount  组件销毁')
+  //   }
+  // }, [])
+
+
   // useEffect(() => {
   //   console.log('只要count改变才会触发')
   // }, [count])

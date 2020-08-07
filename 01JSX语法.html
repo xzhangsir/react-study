@@ -24,6 +24,12 @@
     )
     ReactDOM.render(VDom, document.getElementById('div'))
     // Fragment 想当于一个空标签  不会渲染出来
+
+
+
+    //性能优化
+    // PureComponent  对数据进行浅比较  如果没有变化 组件不会刷新
+    //React.memo(组件名称)  防止子组件重复渲染
   </script>
 </body>
 
