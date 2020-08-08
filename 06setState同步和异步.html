@@ -15,6 +15,7 @@
 <body>
   <div id="div1"></div>
   <script type="text/babel">
+    // setState 会合并所有的异步执行  再执行回调
     class Mydom extends React.Component {
       state = {
         count: 10
