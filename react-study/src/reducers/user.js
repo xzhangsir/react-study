@@ -1,7 +1,7 @@
-const user = (state = {}, action) => {
+const user = (state = [], action) => {
   switch (action.type) {
     case 'changeuser':
-      return action.obj
+      return [...state, action.name]
     default:
       return state
   }

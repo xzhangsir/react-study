@@ -13,10 +13,9 @@ export function add(num) {
         type: 'ADD',
         num,
       })
-    }, 1000)
+    }, 500)
   }
 }
-
 
 export function cut(num) {
   return {

@@ -43,17 +43,18 @@ import User from '../components/user'
 // react-redux和组件关联
 import { connect } from 'react-redux'
 import * as counterActions from '../actions/counter'
+import * as userActions from '../actions/user'
 import { bindActionCreators } from 'redux'
 
 class App extends Component {
   render() {
-    const { counterActions } = this.props
+    const { counter, counterActions, user, userActions } = this.props
     return (
       <div>
-        {this.props.counter}
-        <button onClick={() => counterActions.add(10)}>ADD</button>
+        {counter}
+        <button onClick={() => counterActions.add(10)}>异步ADD</button>
         <button onClick={() => counterActions.cut(10)}>CUT</button>
-        <User />
+        <User user={user} userActions={userActions} />
       </div>
     )
   }
@@ -70,6 +71,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     counterActions: bindActionCreators(counterActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)
