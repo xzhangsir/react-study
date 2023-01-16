@@ -5,9 +5,12 @@ import React, { useState, useEffect } from 'react'
  *          componentDidMount
  *          componentDidUpDate
  *          componentWillUnMount
+ * 
+ * dom 渲染之后执行
  */
 export default () => {
   const [count, setCount] = useState(0)
+  const [name,setName] = useLocalStorage('zx-name','zx')
   useEffect(() => {
     console.log('组件加载和数据发生变化时都会执行')
     document.title = count
@@ -30,7 +33,20 @@ export default () => {
   return (
     <div>
       {count}
-      <button onClick={() => { setCount(count + 1) }}>add</button>
+      <button onClick={() => { setCount(count + 1);setName('xm') }}>add</button>
     </div>
   )
+}
+
+// 自定义 hook 
+
+
+function useLocalStorage(key,defaultVal){
+  const [message,setMessage] = useState(defaultVal)
+
+  useEffect(()=>{
+    window.localStorage.setItem(key,message)
+  },[message,key])
+
+  return [message,setMessage]
 }
