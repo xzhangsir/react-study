@@ -9,7 +9,7 @@ import React, { useState, useEffect } from 'react'
 export default () => {
   const [count, setCount] = useState(0)
   useEffect(() => {
-    console.log('组件加载和数据发生变化是执行')
+    console.log('组件加载和数据发生变化时都会执行')
     document.title = count
   })
   // useEffect(() => {
