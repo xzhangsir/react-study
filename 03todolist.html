@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>ToDoList</title>
+  <script src="./build/react.development.js"></script>
+  <script src="./build/react-dom.development.js"></script>
+  <script src="./build/prop-types.js"></script>
+  <script src="./build/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <script type="text/babel">
+    /*   class App extends React.Component {
+        state = {
+          list: ['A', 'B', 'C']
+        }
+        // 子组件调用父组件的方法 并传值
+        addList = item => {
+          let { list } = this.state
+          list.unshift(item)
+          this.setState({ list })
+        }
+        render() {
+          let { list } = this.state
+          return (
+            <div>
+              <h1>ToDoList</h1>
+              <Add count={list.length} addList={this.addList} />
+              <List list={list} />
+            </div>
+          )
+        }
+      }
+      class Add extends React.Component {
+        propsTypes = {
+          count: PropTypes.number.isRequired,
+          addList: PropTypes.func.isRequired
+        }
+        submit = () => {
+          if (!this.input.value.trim()) return
+          // 子组件传递数据给父组件 通过自定义事件
+          this.props.addList(this.input.value)
+          this.input.value = ''
+        }
+        render() {
+          return (
+            <div>
+              <input type="text" ref={input => (this.input = input)} />
+              <button onClick={this.submit}>提交{this.props.count + 1}</button>
+            </div>
+          )
+        }
+      }
+      class List extends React.Component {
+        static propTypes = {
+          list: PropTypes.array.isRequired
+        }
+        render() {
+          let { list } = this.props
+          return (
+            <ul>
+              {list.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          )
+        }
+      }
+      ReactDOM.render(<App />, document.getElementById('div1')) */
+    /*
+  //  方法二: 不拆分组件
+  class ToDoList extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          list: []
+        }
+      }
+      submit = () => {
+        let { value } = this.input
+        let { list } = this.state
+        this.input.value = ''
+        list.unshift(value)
+        this.setState({ list })
+      }
+      render() {
+        return (
+          <div>
+            <input type="text" ref={input => (this.input = input)} />
+            <button onClick={this.submit}>提交</button>
+            <ul>
+              {this.state.list.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<ToDoList />, document.getElementById('div1')) */
+  </script>
+</body>
+
+</html>
