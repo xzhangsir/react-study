@@ -2,6 +2,12 @@ import React from "react"
 import { useMemo } from "react"
 import { useState,useEffect } from "react"
 
+/**
+ * 
+ * useMemo返回缓存的变量，useCallback返回缓存的函数。
+ * 
+*/
+
 /* export default ()=>{
   const [number,setNumber] = useState(100)
   const [time,setTime] = useState(new Date())
