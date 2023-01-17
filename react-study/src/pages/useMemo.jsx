@@ -4,7 +4,7 @@ import { useState,useEffect } from "react"
 
 /**
  * 
- * useMemo返回缓存的变量，useCallback返回缓存的函数。
+ * useMemo返回的是函数的运行结果，useCallback返回缓存的函数。
  * 
 */
 
