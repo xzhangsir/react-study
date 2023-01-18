@@ -8,6 +8,8 @@ function reducer(state, action) {
       return { count: state.count + 1 }
     case 'cut':
       return { count: state.count - 1 }
+    case 'clear':
+      return { count: action.payload }
     default:
       throw new Error()
   }
@@ -21,6 +23,7 @@ const Demo = () => {
       {state.count}
       <button onClick={() => dispatch({ type: 'add' })}>+</button>
       <button onClick={() => dispatch({ type: 'cut' })}>-</button>
+      <button onClick={() => dispatch({ type: 'clear',payload:initState.count })}>归零</button>
     </div>
   )
 }

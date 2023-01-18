@@ -6,6 +6,7 @@ import Demo4 from './pages/useReducer'
 import Demo5 from './pages/useContext/index.jsx'
 import Demo6 from './pages/useRef'
 import Demo7 from './pages/useMemo'
+import Demo8 from './pages/useContextAnduseReducer/index.jsx'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       {/* <Demo5 /> */}
       {/* <Demo6 /> */}
       {/* <Demo7 /> */}
+      <Demo8 />
     </div>
   )
 }
