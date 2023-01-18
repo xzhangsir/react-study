@@ -9,29 +9,29 @@ const themes = {
   dark: {
     foreground: "#fff",
     background: "#f00"
-  }
+  },
+  default:{
+        foreground: "#f00",
+        background: "#00f"
+      }
 };
 
 function reducer(state,action){
+  console.log("state",state)
   switch(action.type){
     case "light":
       return themes.light
     case "dark":
       return themes.dark
     default:
-      return {
-        foreground: "#f00",
-        background: "#00f"
-      }
+      return themes.default
   }
 }
 
-export const ThemesContext =  React.createContext(themes)
-
-
+export const ThemesContext =  React.createContext()
 
 function Demo(){
-  const [theme,dispatch] = useReducer(reducer,themes.light)
+  const [theme,dispatch] = useReducer(reducer,themes.default)
   return (
     <div>
       <ThemesContext.Provider value={{theme,dispatch}}>

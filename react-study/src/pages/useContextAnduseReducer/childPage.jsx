@@ -4,7 +4,7 @@ import {ThemesContext} from "./index"
 
 function ChildPage(){
   const {theme,dispatch} = useContext(ThemesContext)
-  console.log(theme)
+  console.log("theme",theme)
   return (
     <>
       <div style={{ background: theme.background, color: theme.foreground }}>
