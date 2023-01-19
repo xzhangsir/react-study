@@ -8,19 +8,37 @@ import React, { useState, useCallback } from 'react'
 
 
 
-const Demo = () => {
+export default () => {
   const [count, setCount] = useState(0)
-  const [sum, setSum] = useState(0)
-  function changeCount() {
-    setCount(count + 1)
-  }
+  const [num,setNum] = useState(0)
+
+  // useCallback 配合 React.memo  count变化的时候 子组件才更新
+  const clickCountAdd2 = useCallback(()=>{
+    setCount(count + 2)
+  },[count])
+
+/* //未优化前
+   const clickCountAdd2 = function(){
+    setCount(count + 2)
+  } */
   return (
     <div>
-      <div>{count}</div>
-      <button onClick={changeCount}>chlik me</button>
-      <div>{sum}</div>
-      <button onClick={useCallback(() => { setSum(sum + 1) }, [count])}>chlik me</button>
+      <div>num:{num}</div>
+      <button onClick={()=>( setNum(num + 1))}>chlik me num++</button>
+      <div>count:{count}</div>
+      <button onClick={()=>( setCount(count + 1))}>chlik me count++</button>
+      <Child clickCountAdd2 = {clickCountAdd2}/>
     </div>
   )
 }
-export default Demo
+
+const Child = React.memo(function ({clickCountAdd2}){
+  console.log("子组件render了")
+  return (
+    <>
+      <button onClick={clickCountAdd2}>chlik me count+2</button>
+    </>
+  )
+}
+)
+
