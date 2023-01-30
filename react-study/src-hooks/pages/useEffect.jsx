@@ -30,10 +30,27 @@ export default () => {
   // useEffect(() => {
   //   console.log('只要count改变才会触发')
   // }, [count])
+
+  const [user,setUser] = useState({
+    age:12,
+    address:{
+      city:"xian"
+    }
+  }) 
+  useEffect(function(){
+    console.log("user变化了")
+  },[user.address.city])
+
   return (
     <div>
       {count}
       <button onClick={() => { setCount(count + 1);setName('xm') }}>add</button>
+      {JSON.stringify(user)}
+      <button onClick={()=>{
+        setUser(user=>({...user,address:{
+          city:"bj"
+        }}))
+      }}>change</button>
     </div>
   )
 }

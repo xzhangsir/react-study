@@ -6,6 +6,14 @@ import React, { useState, useCallback } from 'react'
   第一个参数第一次会执行一次 ，之后才会判断第二个参数是否发生了变化
    */
 
+  /**
+   * 
+   * useCallback是用来长期稳定的维护某一个函数的引用  它会将函数创建后的引用保存
+   * 当函数组件下一次重新渲染的时候 他会直接返回之前保存的引用 而不是重新创建
+   * 
+   * 
+  */
+  
 
 
 export default () => {
